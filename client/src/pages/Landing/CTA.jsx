@@ -17,7 +17,7 @@ function CTA() {
             Start Free Trial
             <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button onClick={() => window.open('https://github.com/rybhrdwj/tabular', '_blank')} className="group bg-transparent border-2 border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center">
+          <button onClick={() => window.open('https://github.com/jaideepgoyal551/Tabular', '_blank')} className="group bg-transparent border-2 border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center">
             <GitBranch className="mr-3 w-6 h-6" />
             View on GitHub
           </button>

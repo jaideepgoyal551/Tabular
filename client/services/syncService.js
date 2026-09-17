@@ -8,7 +8,7 @@ const sheetApi = axios.create({
 });
 
 class syncService {
-  
+
   constructor(api) {
     this.api = api;
     this.dirty_cells = {};
@@ -82,7 +82,7 @@ class syncService {
   upsertCells = async (sheetId, cells) => {
     try {
       // utils method to transform cells to the required format
-      if (this.dirty_cells.size === 0) {
+      if (Object.keys(this.dirty_cells).length === 0) {
         console.log("No dirty cells to upsert.");
         return;
       }

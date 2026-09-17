@@ -25,23 +25,22 @@ export default function Cell({ rowIndex, columnIndex, coordinate }) {
   function onClick() {
     if (tableSnapshot?.currentCell !== coordinate) {
       tableState.currentCell = coordinate;
-    } else if (!isEditing) {
-      setIsEditing(true);
     }
+    setIsEditing(true);
   }
 
   function onKeyDown(e) {
     if (e.key === "Enter") {
-      submitValue(isEditing);
+      e.preventDefault();
+      submitValue(true);
       setIsEditing(false);
-      // tableState.setCellByCoordinate(coordinate, e.target.value); FIXME : call the method to update
-      formulaEngine.updateDependents(coordinate);
     } else if (e.key === "Escape") {
+      e.preventDefault();
       setIsEditing(false);
     }
   }
 
-  function submitValue(edited=false) {
+  function submitValue(edited = false) {
     if (cellValue[0] === "=") {
       if (cellValue.length == 1) {
         tableState.setCellByCoordinate(coordinate, "#MISSING_FORMULA", cellValue);
@@ -64,11 +63,11 @@ export default function Cell({ rowIndex, columnIndex, coordinate }) {
     syncService.markCellDirty(coordinate, tableState.getCellByCoordinate(coordinate, true));
   }
 
-  function onBlur(){
-    const status = isEditing;
-    setIsEditing(false);
+  function onBlur() {
+    if (!isEditing) return;
 
-    submitValue(status);
+    setIsEditing(false);
+    submitValue(true);
   }
 
   return (
@@ -82,10 +81,9 @@ export default function Cell({ rowIndex, columnIndex, coordinate }) {
       coordinate={coordinate}
       onChange={(e) => setCellValue(e.target.value)}
       className={[
-        `${
-          isFocused
-            ? "bg-zinc-800 border-zinc-600"
-            : "bg-zinc-900 border-zinc-700"
+        `${isFocused
+          ? "bg-zinc-800 border-zinc-600"
+          : "bg-zinc-900 border-zinc-700"
         }`,
         "border bg-transparent text-white h-full text-center w-full focus:outline-none px-1",
       ].join(" ")}
