@@ -5,8 +5,8 @@
 ---
 
 ## 🚀 Demo
+<img width="1798" height="823" alt="image" src="https://github.com/user-attachments/assets/9da66029-a422-48a0-a5a7-231db6608e51" />
 
-![Demo Screenshot](demo.png)
 
 ---
 
